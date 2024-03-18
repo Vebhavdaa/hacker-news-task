@@ -17,6 +17,7 @@ function App() {
   const [end, setEnd] = useState(5);
 
   useEffect(() => {
+    if (!api) return;
     fetch(api)
       .then((response) => response.json())
       .then((data) => setIds(data))
@@ -47,7 +48,7 @@ function App() {
       <MenuHeader setApi={setApi} setStart={setStart} setEnd={setEnd} />
       <Box p={2}>
         {data &&
-          data.map((news: any) => <NewsCard key={news.id} news={news} />)}
+          data.map((news: any) => <NewsCard key={news.id} news={news} data-testid="news-card" />)}
         <LoadMoreButton ids={ids} end={end}  setEnd={setEnd} />
       </Box>
       <Footer/>
