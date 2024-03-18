@@ -2,7 +2,6 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "./App";
 import fetchMock from 'jest-fetch-mock';
 
-// Mock external components to isolate testing
 jest.mock("./components/menu-header");
 jest.mock("./components/site-name-header");
 jest.mock("./components/news-card");
