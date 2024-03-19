@@ -13,7 +13,7 @@ const LoadMoreButton: React.FC<LoadMoreButtonProps> = ({ setEnd, ids, end }) => 
   };
 
   return (
-    <button className="load-more-button button-font" onClick={handleClick}>Load More</button>
+    <button className="load-more-button button-font" onClick={handleClick} data-testid="load-more-button">Load More</button>
   );
 };
 

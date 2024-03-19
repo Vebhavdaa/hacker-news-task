@@ -2,12 +2,12 @@ import { fireEvent, render } from "@testing-library/react";
 import MenuHeader from "./menu-header";
 
 describe("MenuHeader component", () => {
-  test("calls handleChange function with appropriate arguments when Past button is clicked", () => {
+  test("calls handleChange function with appropriate arguments when buttons are clicked", () => {
     const setApiMock = jest.fn();
     const setStartMock = jest.fn();
     const setEndMock = jest.fn();
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <MenuHeader
         setApi={setApiMock}
         setStart={setStartMock}
@@ -15,8 +15,8 @@ describe("MenuHeader component", () => {
       />
     );
 
-    const newButton = getByText("New");
-    const pastButton = getByText("Past");
+    const newButton = getByTestId("new-button");
+    const pastButton = getByTestId("past-button");
 
     fireEvent.click(newButton);
 

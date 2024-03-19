@@ -9,8 +9,8 @@ describe('SiteNameHeader component', () => {
   });
 
   it('renders the header with the correct styles', () => {
-    const { getByRole } = render(<SiteNameHeader />);
-    const appBar = getByRole('banner'); 
+    const { getByTestId } = render(<SiteNameHeader />);
+    const appBar = getByTestId('site-name-header');
     expect(appBar).toHaveStyle('background-color: #ffffff');
     expect(appBar).toHaveStyle('box-shadow: 0px 3px 28px 0px #00000014');
   });
