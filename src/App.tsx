@@ -3,9 +3,9 @@ import MenuHeader from "./components/menu-header";
 import SiteNameHeader from "./components/site-name-header";
 import NewsCard from "./components/news-card";
 import LoadMoreButton from "./components/load-more-button";
-import "./App.css";
 import { Box } from "@mui/material";
 import Footer from "./components/footer-comp";
+import "./App.css";
 
 function App() {
   const [ids, setIds] = useState<number[]>([]);
@@ -17,12 +17,12 @@ function App() {
   const [end, setEnd] = useState(5);
 
   useEffect(() => {
+    if (!api) return;
     fetch(api)
       .then((response) => response.json())
       .then((data) => setIds(data))
       .catch((error) => console.error("Error fetching IDs:", error));
   }, [api]);
-  console.log(ids);
 
   useEffect(() => {
     if (!ids.length) return; // Exit  if ids is empty
@@ -43,14 +43,30 @@ function App() {
 
   return (
     <>
-      <SiteNameHeader />
-      <MenuHeader setApi={setApi} setStart={setStart} setEnd={setEnd} />
+      <SiteNameHeader data-testid="site-name-header" />
+      <MenuHeader
+        setApi={setApi}
+        setStart={setStart}
+        setEnd={setEnd}
+        data-testid="menu-header"
+      />
       <Box p={2}>
         {data &&
-          data.map((news: any) => <NewsCard key={news.id} news={news} />)}
-        <LoadMoreButton ids={ids} end={end}  setEnd={setEnd} />
+          data.map((news: any, index: number) => (
+            <NewsCard
+              key={news.id}
+              news={news}
+              data-testid={`news-card-${index}`}
+            />
+          ))}
+        <LoadMoreButton
+          ids={ids}
+          end={end}
+          setEnd={setEnd}
+          data-testid="load-more-button"
+        />
       </Box>
-      <Footer/>
+      <Footer data-testid="footer" />
     </>
   );
 }
